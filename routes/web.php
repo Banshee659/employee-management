@@ -12,3 +12,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/get/employee/list', [App\Http\Controllers\EmployeesController::class, 'getEmployeeList'])->name('employeeList');
+Route::post('/get/employee/', [App\Http\Controllers\EmployeesController::class, 'getEmployee'])->name('individualEmployee');
