@@ -1,9 +1,27 @@
 import React, { Component} from 'react';
+import ViewModal from "./Modals/ViewModal";
 
 class TableActionButtons extends Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            currentEmployeeName: null,
+            currentEmployeeSalary: null,
+        }
+    }
+
+    getEmployeeDetails = (id) => {
+        axios.post('get/employee', {
+            employeeId: id
+        }).then((response) => {
+            this.setState({
+                currentEmployeeName: response.data.employee_name,
+                currentEmployeeSalary: response.data.salary
+            })
+            console.log(response.data)
+        })
     }
 
     render() {
@@ -14,13 +32,17 @@ class TableActionButtons extends Component {
                     Actions
                 </button>
                 <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a className="dropdown-item" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                       href="#">View</a>
+                    <a className="dropdown-item" role="button" data-bs-toggle="modal" data-bs-target={'#viewModal'+this.props.eachRowId}
+                       href="#view"
+                    onClick={ () => { this.getEmployeeDetails(this.props.eachRowId) }}>
+                        View
+                    </a>
                     <a className="dropdown-item"
                        href="#">Update</a>
                     <a className="dropdown-item text-danger"
                        href="#">Delete</a>
                 </div>
+                <ViewModal modalId={ this.props.eachRowId } employeeData={ this.state }/>
             </div>
         );
     }
