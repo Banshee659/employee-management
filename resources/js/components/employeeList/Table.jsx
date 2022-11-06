@@ -34,13 +34,13 @@ class Table extends Component {
                 <div className="row justify-content-center">
                     <div className="col-md-8">
                         <div className="card">
-                            <table className="table table-dark table-hover">
+                            <table className="table table-light table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col" width="100px">#</th>
                                         <th scope="col" width="100px">Name</th>
                                         <th scope="col" width="100px">Salary</th>
-                                        <th scope="col" width="100px">Actions</th>
+                                        <th scope="col" width="100px"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
