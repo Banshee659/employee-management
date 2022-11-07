@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
 import ViewModal from "./Modals/ViewModal";
+import UpdateModal from "./Modals/UpdateModal";
 
 class TableActionButtons extends Component {
 
@@ -37,12 +38,16 @@ class TableActionButtons extends Component {
                     onClick={ () => { this.getEmployeeDetails(this.props.eachRowId) }}>
                         View
                     </a>
-                    <a className="dropdown-item"
-                       href="#">Update</a>
+                    <a className="dropdown-item" role="button" data-bs-toggle="modal" data-bs-target={'#updateModal'+this.props.eachRowId}
+                       href="#update"
+                        onClick={ () => { this.updateEmployeeDetails(this.props.eachRowId) }}>
+                        Update
+                    </a>
                     <a className="dropdown-item text-danger"
                        href="#">Delete</a>
                 </div>
                 <ViewModal modalId={ this.props.eachRowId } employeeData={ this.state }/>
+                <UpdateModal modalId={ this.props.eachRowId } employeeData={ this.state }/>
             </div>
         );
     }
