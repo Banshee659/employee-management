@@ -80,7 +80,7 @@ class UpdateModal extends Component {
                                            id={"employeeName"+this.props.modalId }
                                            name="employeeName"
                                            className='form-control mb-3'
-                                           placeholder="Employee Name" required=""
+                                           placeholder="Employee Name"
                                            value={this.state.employeeName ?? ""}
                                            onChange={this.inputEmployeeName}
                                     />
@@ -89,8 +89,10 @@ class UpdateModal extends Component {
                                 <div className="form-group">
                                     <label htmlFor={"employeeSalary"+this.props.modalId }>Employee Salary</label>
                                     <input type="text"
-                                           id="employeeSalary"
+                                           id={"employeeSalary"+this.props.modalId }
+                                           name="employeeSalary"
                                            className='form-control mb-3'
+                                           placeholder="Salary"
                                            value={this.state.employeeSalary ?? ""}
                                            onChange={this.inputEmployeeSalary}
                                     />
