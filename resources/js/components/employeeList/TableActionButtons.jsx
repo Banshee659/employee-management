@@ -40,7 +40,7 @@ class TableActionButtons extends Component {
                     </a>
                     <a className="dropdown-item" role="button" data-bs-toggle="modal" data-bs-target={'#updateModal'+this.props.eachRowId}
                        href="#update"
-                        onClick={ () => { this.updateEmployeeDetails(this.props.eachRowId) }}>
+                        onClick={ () => { this.getEmployeeDetails(this.props.eachRowId) }}>
                         Update
                     </a>
                     <a className="dropdown-item text-danger"

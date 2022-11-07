@@ -27,7 +27,26 @@ class EmployeesController extends Controller
     {
         try
         {
-            $employeeData = Employee::findOrFail($request->get('employeeId'));
+            $employeeData = Employee::findOrFail($request->employeeId);
+            return response()->json($employeeData);
+
+        }
+        catch (Exception $e)
+        {
+            Log::error($e);
+        }
+    }
+
+    public function updateEmployee(Request $request)
+    {
+        try
+        {
+            $employeeData = Employee::findOrFail($request->employeeId);
+            $employeeData->update([
+                'employee_name' => $request->employeeName,
+                'salary' => $request->employeeSalary,
+            ]);
+
             return response()->json($employeeData);
 
         }
