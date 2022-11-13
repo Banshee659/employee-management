@@ -14,9 +14,13 @@ class Table extends Component {
             employees: [],
 
         }
+
+        if (this.props.loading) {
+            return <h2>Loading...</h2>;
+        }
     }
 
-    componentDidMount() {
+    /*componentDidMount() {
         this.getEmployeeList();
     }
 
@@ -29,7 +33,7 @@ class Table extends Component {
             })
         })
 
-    }
+    }*/
 
     render() {
         return (
@@ -53,7 +57,7 @@ class Table extends Component {
                                 </thead>
                                 <tbody>
                                     {
-                                        this.state.employees.map(function (x, i){
+                                        this.props.rows.map(function (x, i){
                                             return <TableRow key={i} data={x}/>
                                         })
                                     }
