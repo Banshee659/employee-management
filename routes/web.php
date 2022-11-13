@@ -13,4 +13,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/get/employee/list', [App\Http\Controllers\EmployeesController::class, 'getEmployeeList'])->name('employeeList');
 Route::post('/get/employee/', [App\Http\Controllers\EmployeesController::class, 'getEmployee'])->name('individualEmployee');
-Route::post('/update/employee/', [App\Http\Controllers\EmployeesController::class, 'updateEmployee'])->name('updateEmployee');
+Route::put('/update/employee/', [App\Http\Controllers\EmployeesController::class, 'updateEmployee'])->name('updateEmployee');
+Route::delete('/delete/employee/{employee}', [App\Http\Controllers\EmployeesController::class, 'destroy'])->name('deleteEmployee');
