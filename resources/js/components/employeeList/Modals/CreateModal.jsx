@@ -1,10 +1,9 @@
 import React, { Component} from 'react';
-import axios from "axios";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-class UpdateModal extends Component {
+class CreateModal extends Component {
 
     constructor(props) {
         super(props);
@@ -27,91 +26,55 @@ class UpdateModal extends Component {
         })
     }
 
-    static getDerivedStateFromProps(props, state) {
-        let employeeUpdate = {
-            employeeName: null,
-            employeeSalary: null
-        }
-
-        // Updating data from input.
-
-        if (state.employeeName && (state.employeeName !== props.employeeData.currentEmployeeName)) {
-            return null;
-        }
-
-        if (state.employeeSalary && (state.employeeSalary !== props.employeeData.currentEmployeeSalary)) {
-            return null;
-        }
-
-        // Updating data from props Below.
-
-        if(state.employeeName !== props.employeeData.currentEmployeeName || state.employeeName === props.employeeData.currentEmployeeName) {
-            employeeUpdate.employeeName = props.employeeData.currentEmployeeName
-        }
-
-        if(state.employeeSalary !== props.employeeData.currentEmployeeSalary || state.employeeSalary === props.employeeData.currentEmployeeSalary) {
-            employeeUpdate.employeeSalary = props.employeeData.currentEmployeeSalary
-        }
-
-        return employeeUpdate;
-    }
-
-    updateEmployeeData = () => {
-        axios.put('/update/employee', {
-            employeeId: this.props.modalId,
+    addEmployee = () => {
+        axios.post('/add/employee', {
             employeeName: this.state.employeeName,
-            employeeSalary: this.state.employeeSalary
-        }).then((response) => {
-            toast.success("Updated successfully");
+            employeeSalary: this.state.employeeSalary,
+        }).then(() => {
+            toast.success('Employee added successfully');
+
             setTimeout(() => {
                 location.reload();
             }, 2000)
-
         })
     }
 
     render() {
         return (
-            <div className="modal fade" id={"updateModal"+this.props.modalId } aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal" id="createModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Employee Details</h5>
+                            <h5 className="modal-title" id="exampleModalLabelLel">Employee Details</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                             <form className='form'>
                                 <div className="form-group">
-                                    <label htmlFor={"employeeName"+this.props.modalId }>Employee Name</label>
+                                    <label htmlFor="employeeName">Employee Name</label>
                                     <input type="text"
-                                           id={"employeeName"+this.props.modalId }
+                                           id="employeeName"
                                            name="employeeName"
                                            className='form-control mb-3'
                                            placeholder="Employee Name"
-                                           value={this.state.employeeName ?? ""}
                                            onChange={this.inputEmployeeName}
                                     />
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor={"employeeSalary"+this.props.modalId }>Employee Salary</label>
+                                    <label htmlFor="employeeSalary">Employee Salary</label>
                                     <input type="text"
-                                           id={"employeeSalary"+this.props.modalId }
+                                           id="employeeSalary"
                                            name="employeeSalary"
                                            className='form-control mb-3'
                                            placeholder="Salary"
-                                           value={this.state.employeeSalary ?? ""}
                                            onChange={this.inputEmployeeSalary}
                                     />
                                 </div>
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <input type="submit"
-                                   className="btn btn-info"
-                                   value="Save"
-                                   onClick={this.updateEmployeeData}
-                            />
+                            <input type="button" className="btn btn-info" value="Add" onClick={this.addEmployee} />
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -121,4 +84,4 @@ class UpdateModal extends Component {
     }
 }
 
-export default UpdateModal;
+export default CreateModal;

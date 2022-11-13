@@ -13,7 +13,7 @@ class EmployeesController extends Controller
     {
         try
         {
-            $employees = Employee::all();
+            $employees = Employee::orderByDesc('id')->get();
             return response()->json($employees);
 
         }
@@ -60,6 +60,23 @@ class EmployeesController extends Controller
         try
         {
             $employee->delete();
+
+        }
+        catch (Exception $e)
+        {
+            Log::error($e);
+        }
+    }
+
+    public function store(Request $request) {
+        try
+        {
+            $newEmployee = Employee::create([
+                'employee_name' => $request->employeeName,
+                'salary' => $request->employeeSalary,
+            ]);
+
+            return response()->json($newEmployee);
 
         }
         catch (Exception $e)

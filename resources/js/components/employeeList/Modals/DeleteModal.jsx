@@ -16,7 +16,7 @@ class DeleteModal extends Component {
 
             setTimeout(() => {
                 location.reload();
-            }, 3500)
+            }, 2000)
         })
     }
 

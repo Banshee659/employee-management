@@ -3,6 +3,7 @@ import React, { Component} from 'react';
 import TableRow from './TableRow';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CreateModal from "./Modals/CreateModal";
 
 class Table extends Component {
 
@@ -43,7 +44,11 @@ class Table extends Component {
                                         <th scope="col" width="100px">#</th>
                                         <th scope="col" width="100px">Name</th>
                                         <th scope="col" width="100px">Salary</th>
-                                        <th scope="col" width="100px"></th>
+                                        <th scope="col" width="150px"><button className="btn btn-info"
+                                                                              data-bs-toggle="modal"
+                                                                              data-bs-target="#createModal">
+                                            Add
+                                        </button></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,6 +62,7 @@ class Table extends Component {
                         </div>
                     </div>
                 </div>
+                <CreateModal/>
             </div>
         );
     }
