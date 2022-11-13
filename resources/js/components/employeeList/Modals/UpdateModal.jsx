@@ -1,6 +1,9 @@
 import React, { Component} from 'react';
 import axios from "axios";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 class UpdateModal extends Component {
 
     constructor(props) {
@@ -59,7 +62,11 @@ class UpdateModal extends Component {
             employeeName: this.state.employeeName,
             employeeSalary: this.state.employeeSalary
         }).then((response) => {
-            console.log(response)
+            toast.success("Updated successfully");
+            setTimeout(() => {
+                location.reload();
+            }, 250)
+
         })
     }
 
@@ -102,7 +109,7 @@ class UpdateModal extends Component {
                         <div className="modal-footer">
                             <input type="submit"
                                    className="btn btn-info"
-                                   value="Update"
+                                   value="Save"
                                    onClick={this.updateEmployeeData}
                             />
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
