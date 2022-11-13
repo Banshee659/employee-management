@@ -55,4 +55,16 @@ class EmployeesController extends Controller
             Log::error($e);
         }
     }
+
+    public function destroy(Employee $employee) {
+        try
+        {
+            $employee->delete();
+
+        }
+        catch (Exception $e)
+        {
+            Log::error($e);
+        }
+    }
 }
